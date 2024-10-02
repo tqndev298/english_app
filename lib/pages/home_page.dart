@@ -17,7 +17,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../packages/quote/qoute_model.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -55,9 +55,9 @@ class _HomePageState extends State<HomePage> {
     int len = pref.getInt(ShareKeys.counter) ?? 5;
     List<String> newList = [];
     List<int> rans = fixedListRandom(len: len, max: nouns.length);
-    rans.forEach((index) {
+    for (var index in rans) {
       newList.add(nouns[index]);
-    });
+    }
     setState(() {
       words = newList.map((e) => getQuote(e)).toList();
     });
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: AppColors.secondColor,
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         // margin: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                   style: AppStyles.h5
                       .copyWith(fontSize: 12, color: AppColors.textColor),
                 )),
-            Container(
+            SizedBox(
               height: size.height * 2 / 3,
               // color: Colors.red,
               child: PageView.builder(
@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       padding: const EdgeInsets.all(16),
                       // margin: const EdgeInsets.symmetric(vertical: 16),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: AppColors.primaryColor,
                           boxShadow: [
                             BoxShadow(
@@ -157,7 +157,6 @@ class _HomePageState extends State<HomePage> {
                       child: index >= 5
                           ? InkWell(
                               onTap: () {
-                                print('show more');
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -168,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Text(
                                   'Show more ...',
                                   style: AppStyles.h3.copyWith(shadows: [
-                                    BoxShadow(
+                                    const BoxShadow(
                                         color: Colors.black38,
                                         offset: Offset(3, 6),
                                         blurRadius: 6)
@@ -189,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                                     textAlign: TextAlign.start,
                                     text: TextSpan(
                                         text: firstLetter,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontFamily: FontFamily.sen,
                                             fontSize: 80,
                                             fontWeight: FontWeight.bold,
@@ -202,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                                         children: [
                                           TextSpan(
                                               text: leftLetter,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontFamily: FontFamily.sen,
                                                   fontSize: 45,
                                                   fontWeight: FontWeight.bold,
@@ -279,19 +278,17 @@ class _HomePageState extends State<HomePage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24),
-                child: AppButton(
-                    label: "Favorites",
-                    onTap: () {
-                      print('Favorites');
-                    }),
+                child: AppButton(label: "Favorites", onTap: () {}),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24),
                 child: AppButton(
                     label: "Your Control",
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => ControlPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const ControlPage()));
                     }),
               )
             ],
@@ -303,15 +300,15 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildIndicator(bool isActive, Size size) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.bounceIn,
       height: 8,
       margin: const EdgeInsets.symmetric(horizontal: 11),
       width: isActive ? size.width * 1 / 5 : 24,
       decoration: BoxDecoration(
           color: isActive ? AppColors.lighBlue : AppColors.lightGrey,
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          boxShadow: [
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+          boxShadow: const [
             BoxShadow(
                 color: Colors.black38, offset: Offset(2, 3), blurRadius: 3)
           ]),
@@ -323,7 +320,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         alignment: Alignment.centerLeft,
         child: Material(
-          borderRadius: BorderRadius.all(Radius.circular(24)),
+          borderRadius: const BorderRadius.all(Radius.circular(24)),
           elevation: 4,
           color: AppColors.primaryColor,
           child: InkWell(
@@ -331,16 +328,16 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => AllWordsPage(words: this.words)));
+                      builder: (_) => AllWordsPage(words: words)));
             },
-            borderRadius: BorderRadius.all(Radius.circular(24)),
+            borderRadius: const BorderRadius.all(Radius.circular(24)),
             splashColor: Colors.black38,
             child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               child: Text(
                 'Show more',
                 style: AppStyles.h5,
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             ),
           ),
         ));

@@ -7,7 +7,7 @@ import '../values/app_assets.dart';
 import '../values/app_styles.dart';
 
 class ControlPage extends StatefulWidget {
-  const ControlPage({Key? key}) : super(key: key);
+  const ControlPage({super.key});
 
   @override
   _ControlPageState createState() => _ControlPageState();
@@ -53,17 +53,17 @@ class _ControlPageState extends State<ControlPage> {
           child: Image.asset(AppAssets.leftArrow),
         ),
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: Column(
           children: [
-            Spacer(),
+            const Spacer(),
             Text(
               'How much number word at once',
               style: AppStyles.h4
                   .copyWith(color: AppColors.lightGrey, fontSize: 18),
             ),
-            Spacer(),
+            const Spacer(),
             Text(
               '${sliderValue.toInt()}',
               style: AppStyles.h1.copyWith(
@@ -92,9 +92,9 @@ class _ControlPageState extends State<ControlPage> {
                 style: AppStyles.h5.copyWith(color: AppColors.textColor),
               ),
             ),
-            Spacer(),
-            Spacer(),
-            Spacer(),
+            const Spacer(),
+            const Spacer(),
+            const Spacer(),
           ],
         ),
       ),

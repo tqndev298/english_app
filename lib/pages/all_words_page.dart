@@ -30,32 +30,30 @@ class AllWordsPage extends StatelessWidget {
         ),
         backgroundColor: AppColors.secondColor,
       ),
-      body: Container(
-        child: GridView.count(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          crossAxisCount: 2,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          children: words
-              .map((e) => Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: AppColors.primaryColor,
-                        borderRadius: BorderRadius.all(Radius.circular(8))),
-                    child: AutoSizeText(
-                      e.noun ?? '',
-                      style: AppStyles.h3.copyWith(shadows: [
-                        BoxShadow(
-                            color: Colors.black38,
-                            offset: Offset(3, 6),
-                            blurRadius: 6)
-                      ]),
-                      maxLines: 1,
-                      overflow: TextOverflow.fade,
-                    ),
-                  ))
-              .toList(),
-        ),
+      body: GridView.count(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        crossAxisCount: 2,
+        mainAxisSpacing: 8,
+        crossAxisSpacing: 8,
+        children: words
+            .map((e) => Container(
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                      color: AppColors.primaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(8))),
+                  child: AutoSizeText(
+                    e.noun ?? '',
+                    style: AppStyles.h3.copyWith(shadows: [
+                      const BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(3, 6),
+                          blurRadius: 6)
+                    ]),
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                  ),
+                ))
+            .toList(),
       ),
     );
   }
